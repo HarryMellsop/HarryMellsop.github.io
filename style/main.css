@@ -1,0 +1,34 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.view {
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+    top: 0;
+}
+
+#splash {
+    background-image: url(../img/aorakivalley.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+
+#greeting {
+    font-family: 'Ubuntu', sans-serif;
+    color: white;
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    font-size: 60px;
+}
+
+#desc {
+    font-family: 'Ubuntu', sans-serif;
+    color: black;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
