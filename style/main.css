@@ -3,32 +3,85 @@ body {
     margin: 0;
 }
 
-.view {
-    height: 90vh;
-    width: 100vw;
-    position: relative;
-    top: 0;
-}
-
 #splash {
+    width: 100vw;
+    height: 100vh;
     background-image: url(../img/aorakivalley.jpeg);
     background-size: cover;
     background-position: center;
+    position: fixed;
+}
+
+#more {
+    width: 90vw;
+    position: relative;
+    left: 5vw;
+    height: 100vh;
+    top: 100vh;
+    background-color: white;
 }
 
 #greeting {
-    font-family: 'Ubuntu', sans-serif;
     color: white;
-    position: absolute;
-    bottom: 40px;
+    bottom: 110px;
     left: 40px;
+    font-size: 60px;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
     font-size: 60px;
 }
 
 #desc {
-    font-family: 'Ubuntu', sans-serif;
     color: black;
     position: absolute;
-    top: 40px;
+    top: 10px;
     left: 40px;
+}
+
+#carousel {
+    width: calc(40vw - 50px - 20px);
+    height: calc(40vw - 50px - 20px);
+    position: absolute;
+    top: calc((100% - (40vw - 50px - 20px)) / 2);
+    right: 40px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+    grid-template-rows: calc(50% - 10px) calc(50% - 10px);
+    margin-right: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#carousel img {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.carouselitem {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    background-size: cover;
+    background-position: center;
+}
+
+#corbet {
+    background-image: url(../img/corbet.jpg);
+}
+
+#keystone {
+    background-image: url(../img/keystone.jpg);
+}
+
+#milford {
+    background-image: url(../img/milford.jpeg);
+}
+
+#boatsn {
+    background-image: url(../img/boatsn.jpg);
 }
