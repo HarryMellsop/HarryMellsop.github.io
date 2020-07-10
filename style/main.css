@@ -6,7 +6,8 @@ body {
 #splash {
     width: 100vw;
     height: 100vh;
-    background-image: url(../img/aorakivalley.jpeg);
+    background-image: url(../img/aorakvalley.jpeg);
+    background-color: rgb(37, 37, 37);
     background-size: cover;
     background-position: center;
     position: fixed;
@@ -84,4 +85,12 @@ h1 {
 
 #boatsn {
     background-image: url(../img/boatsn.jpg);
+}
+
+#aboutme {
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(46, 46, 46);
+    margin-left: 40px;
+    width: calc(50% - 40px);
+    margin-top: 50px;
 }
