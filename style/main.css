@@ -17,6 +17,12 @@ body {
     position: fixed;
 }
 
+/*
+ *
+ * Desktop Version
+ *
+ */
+
 /* 
  * About Me Section 
  */
@@ -83,11 +89,6 @@ h1 {
     margin-bottom: 40px;
 }
 
-#carousel img {
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
 
 .carouselitem {
     height: 100%;
@@ -130,15 +131,14 @@ h1 {
 /* Buttons */
 
 #buttoncontainer {
-    width: 460px;
-    margin-left: calc((50% - 460px) / 2);
+    margin-left: calc((50% - 330px) / 2);
     margin-top: 30px;
     padding-bottom: 30px;
 }
 
 button {
     height: 60px;
-    width: 200px;
+    width: 140px;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     color: white;
@@ -167,4 +167,47 @@ button:focus {
 
 #resume {
     margin-left: 50px;
+}
+
+/* 
+ *
+ * Mobile/Responsive Display 
+ *
+ */
+
+@media screen and (max-width: 840px) {
+    #carousel {
+        width: calc(40vw - 50px - 20px);
+        height: calc((40vw - 50px - 20px) * 4);
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: 100%;
+        grid-template-rows: calc(25% - 10px) calc(25% - 10px) calc(25% - 10px) calc(25% - 10px);
+        margin-bottom: 40px;
+    }
+
+    #buttoncontainer {
+        margin-left: calc(40px);
+    }
+}
+
+@media screen and (max-width: 680px) {
+    #carousel {
+        display: none;
+    }
+
+    #social {
+        display: none;
+    }
+
+    .aboutme {
+        width: calc(100% - 80px);
+    }
+
+    #buttoncontainer {
+        margin-left: calc((100% - 330px) / 2);
+    }
 }
