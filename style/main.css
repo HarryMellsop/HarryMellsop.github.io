@@ -195,6 +195,16 @@ button:focus {
 }
 
 @media screen and (max-width: 680px) {
+    #greeting {
+        font-size: 10vw;
+        left: 40px;
+        bottom: 90px;
+    }
+
+    #desc {
+        font-size: 10vw;
+    }
+
     #carousel {
         display: none;
     }
