@@ -6,6 +6,6 @@ $(document).ready(function() {
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
     
     if (iOSSafari) {
-        $('#more').css({top: '90vh'});
+        $('#more').css({top: '85vh'});
     }
 })
