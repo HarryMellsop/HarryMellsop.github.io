@@ -5,7 +5,7 @@ $(document).ready(function() {
     var webkit = !!ua.match(/WebKit/i);
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
     
-    if (iOSSafari) {
-        $('#greeting').css({bottom: '150px'});
+    if (true) {
+        $('#more').css({top: '90vh'});
     }
 })
