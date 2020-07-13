@@ -199,9 +199,10 @@ button:focus {
 @media screen and (max-width: 680px) {
     #greeting {
         font-size: 10vw;
-        left: 40px;
+        left: -5vw;
         bottom: 90px;
-        max-width: calc(100vw - 80px);
+        width: 100vw;
+        text-align: center;
     }
 
     #desc {
