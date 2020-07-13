@@ -11,6 +11,6 @@ $(document).ready(function() {
     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
     
     if (iOSSafari) {
-        $('#more').css({top: 'calc(100vh - 69px)'});
+        $('#more').css({top: 'calc(100vh - 100px)'});
     }
 })
