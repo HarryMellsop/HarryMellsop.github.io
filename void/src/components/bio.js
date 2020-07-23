@@ -60,7 +60,7 @@ const Bio = () => {
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
         <a href={`https://instagram.com/${social.instagram}`}>
-          You should follow him on Instagram, 
+          You should follow me on Instagram, 
         </a>
         <a href={`https://www.linkedin.com/in/harrymellsop/`}>
           &nbsp;or connect on Linkedin.
