@@ -1,15 +1,15 @@
 module.exports = {
   pathPrefix: "/void/public",
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `The Void`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Harry Mellsop`,
+      summary: `who lives between Auckland, 🇳🇿 and Palo Alto, 🇺🇸 studying Artificial Intelligence and Economics at Stanford University.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
     social: {
-      twitter: `kylemathews`,
+      instagram: `harrymellsop`,
     },
   },
   plugins: [
