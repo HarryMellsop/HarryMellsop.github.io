@@ -16,7 +16,7 @@ const Bio = () => {
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
         childImageSharp {
-          fixed(width: 50, height: 50) {
+          fixed(width: 150, height: 150) {
             ...GatsbyImageSharpFixed
           }
         }
@@ -60,10 +60,10 @@ const Bio = () => {
         Written by <strong>{author.name}</strong> {author.summary}
         {` `}
         <a href={`https://instagram.com/${social.instagram}`}>
-          You should follow me on Instagram, 
+          You should follow him on Instagram, 
         </a>
         <a href={`https://www.linkedin.com/in/harrymellsop/`}>
-          or connect on Linkedin.
+          &nbsp;or connect on Linkedin.
         </a>
       </p>
     </div>
