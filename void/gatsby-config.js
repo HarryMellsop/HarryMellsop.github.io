@@ -4,7 +4,7 @@ module.exports = {
     title: `The Void`,
     author: {
       name: `Harry Mellsop`,
-      summary: `who lives between Auckland, 🇳🇿 and Palo Alto, 🇺🇸 studying Artificial Intelligence and Economics at Stanford University.`,
+      summary: `who lives between Auckland (🇳🇿) and Palo Alto (🇺🇸), and studies Artificial Intelligence and Economics at Stanford University.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
