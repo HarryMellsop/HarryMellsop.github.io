@@ -43,8 +43,8 @@ const Bio = () => {
         marginBottom: rhythm(2.5),
       }}
     >
-      <Image
-        fixed={data.avatar.childImageSharp.fixed}
+      <img
+        src={"https://www.harrymellsop.com/void/public/static/12f6e1943d71c44eec402bf6f05dd96b/c2440/profile-pic.jpg"}
         alt={author.name}
         style={{
           marginRight: rhythm(1 / 2),
