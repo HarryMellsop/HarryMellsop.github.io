@@ -44,7 +44,7 @@ const Bio = () => {
       }}
     >
       <img
-        src={"https://www.harrymellsop.com/void/public/static/12f6e1943d71c44eec402bf6f05dd96b/c2440/profile-pic.jpg"}
+        src={"https://www.harrymellsop.com/void/content/assets/profile-pic.jpg"}
         alt={author.name}
         style={{
           marginRight: rhythm(1 / 2),
