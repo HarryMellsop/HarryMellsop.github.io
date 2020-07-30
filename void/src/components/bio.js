@@ -55,6 +55,7 @@ const Bio = () => {
         imgStyle={{
           borderRadius: `50%`,
         }}
+        placeholderStyle={{ visibility: "hidden" }}
       />
       <p>
         Written by <strong>{author.name}</strong> {author.summary}
