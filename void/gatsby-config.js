@@ -1,5 +1,5 @@
 module.exports = {
-  pathPrefix: "/void/public",
+  pathPrefix: `/void/public`,
   siteMetadata: {
     title: `The Void`,
     author: {
