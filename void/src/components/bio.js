@@ -50,8 +50,8 @@ const Bio = () => {
           marginRight: rhythm(1 / 2),
           marginBottom: 0,
           minWidth: 50,
-          width: 50,
-          height: 50,
+          width: `50px`,
+          height: `50px`,
           borderRadius: `100%`,
         }}
         imgStyle={{
