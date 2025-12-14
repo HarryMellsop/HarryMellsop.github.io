@@ -1,77 +1,368 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <script>
+      // Prevent flash of wrong theme
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harry Mellsop</title>
+    <meta name="description" content="Harry Mellsop - Co-Founder, Engineer, Builder" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥝</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Harry Mellsop" />
+    <meta property="og:description" content="Co-Founder at Antioch. Previously Stanford, Tesla Autopilot, Transpose (acquired by Chainalysis)." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://harrymellsop.com" />
+    <meta property="og:image" content="https://harrymellsop.com/assets/photo.png" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@harrymellsop" />
+    <meta name="twitter:title" content="Harry Mellsop" />
+    <meta name="twitter:description" content="Co-Founder at Antioch. Previously Stanford, Tesla Autopilot, Transpose (acquired by Chainalysis)." />
+    <meta name="twitter:image" content="https://harrymellsop.com/assets/photo.png" />
+    <style>
+      .photo-flip {
+        perspective: 1000px;
+      }
+      .photo-flip-inner {
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+      .photo-flip:hover .photo-flip-inner {
+        transform: rotateY(180deg);
+      }
+      .photo-front, .photo-back {
+        backface-visibility: hidden;
+      }
+      .photo-back {
+        transform: rotateY(180deg);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .photo-flip-inner {
+          transition: none;
+        }
+        .link-arrow {
+          transition: none;
+        }
+      }
+      .link-arrow {
+        transition: transform 0.2s ease-out;
+      }
+      a:hover .link-arrow,
+      .logo-link:hover + * .link-arrow {
+        transform: translate(1px, -1px);
+      }
+    </style>
+  </head>
+  <body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 font-sans antialiased transition-colors">
+    <main class="max-w-xl mx-auto px-6 py-16 md:py-24 relative">
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="absolute top-16 md:top-24 right-6 text-neutral-300 dark:text-neutral-600 hover:text-neutral-500 dark:hover:text-neutral-400 transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
 
-    <head>
-        <title>Harry Mellsop</title>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Hey!  I'm Harry, a Kiwi studying Economics and Computer Science in Artificial Intelligence at Stanford University.">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <meta name="keywords" content="Harry, Henry, Mellsop, Stanford, University, Software, New, Zealand, Amazon, ">
-        <meta name="author" content="Harry Mellsop">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <meta property="og:title" content="Harry Mellsop">
-        <meta property="og:image" content="harrymellsop.com/img/photo/aorakivalley.jpeg">
-        <meta property="og:description" content="Hey!  I'm Harry, a Kiwi studying Economics and Computer Science in Artificial Intelligence at Stanford University.">
-
-        <link rel="stylesheet" href="./style/main.css">
-        <link rel="icon" type="image/png" href="INSERT ICON HERE">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="src/ios_fix.js"></script>
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172764403-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-172764403-1');
-        </script>
-
-    </head>
-
-    <body>
-
-        <div id="splash" class="view">   
+      <!-- Header: Photo + Info -->
+      <header class="flex gap-6 mb-12">
+        <!-- Photo -->
+        <div class="photo-flip w-28 h-28 flex-shrink-0">
+          <div class="photo-flip-inner relative w-full h-full">
+            <img
+              src="/assets/photo.png"
+              alt="Harry Mellsop"
+              class="photo-front absolute w-full h-full rounded-xl object-cover"
+            />
+            <img
+              src="/assets/photo-casual.png"
+              alt="Harry Mellsop - casual"
+              class="photo-back absolute w-full h-full rounded-xl object-cover"
+            />
+          </div>
         </div>
 
-        <div id="more" class="view">
-            <h1 id="greeting">Hi, I'm Harry.</h1>
-            <div id="social">
-                <a href="https://www.instagram.com/harrymellsop/"><img id="instagram" src="img/icon/instagram.svg"></a>
-                <a href="https://github.com/HarryMellsop"><img id="github" src="img/icon/github.svg"></a>
-                <a href="https://www.linkedin.com/in/harrymellsop/"><img id="linkedn" src="img/icon/linkedin.svg"></a>
-            </div>
+        <!-- Info -->
+        <div class="flex flex-col justify-center">
+          <!-- Name -->
+          <h1 class="text-2xl font-bold text-neutral-900 dark:text-white tracking-tight">Harry Mellsop</h1>
 
-            <h1 id="desc">About Me</h1>
+          <!-- Location -->
+          <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-1 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            New York, USA · Auckland, New Zealand
+          </p>
 
-            <div id="moreinfo">
-                <p class="aboutme">I'm a Kiwi studying Economics and Computer Science in Artificial Intelligence at Stanford University 🌲.</p>
-                <p class="aboutme">I was born in Wellington and grew up in Auckland, 🇳🇿.  Up until recently I was living in Palo Alto, California, 🇺🇸 with my girlfriend, two of my close friends, and our cats, Maverick and Goose 🐱.  COVID-19 and subsequent law changes in the United States have turned my life upside down forcing me back to New Zealand, but I'm making the most of it.</p>
-                <p class="aboutme">I'm currently employed by Amazon's Lab126, working on software engineering for Amazon FireTV.</p>
-                <p class="aboutme">I'm a Student Founder in Residence at StartX, have founded/co-founded 3 startups (in the VR/AR, social media and other software engineering spaces), and am passionate about using entrepreneurship and technology to solve real human need.  I'm currently working on a plan to use artificial intelligence to assist with pricing fairer bridging credit in the low-income, unsecured loan space.</p>
-                <p class="aboutme">I love cycling 🚴‍♀️, mountain biking 🚵‍♀️, skiing ⛷ and diving 🌊, particularly with friends and family.</p>
-                <p class="aboutme">I've always had a love of engineering, but I'm particularly passionate about aircraft.  Consequently, I'm currently working on getting my private pilot's license 🛫.</p>
-                <p class="aboutme">You can read an amalgamation of my thoughts in The Void, linked below.  Given that my writing is likely to only ever be read by me, the name is a nod to the idea of 'shouting into the void', but I hope some of what I write might be appreciated by others.</p>
-            </div>
-
-            <div id="buttoncontainer">
-                <button id="thevoid" location.href.
-
-                <input type="button" onclick="location.href='https://www.harrymellsop.com/void/public';">The Void</button>
-                <button id="resume">Resume</button>
-            </div>
-
-            <div id="carousel">
-                <div class="carouselitem" id="corbet"></div>
-                <div class="carouselitem" id="keystone"></div>
-                <div class="carouselitem" id="milford"></div>
-                <div class="carouselitem" id="boatsn"></div>
-            </div>
+          <!-- Social Buttons -->
+          <div class="flex gap-2 mt-4">
+            <a
+              href="https://www.linkedin.com/in/harrymellsop/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="p-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a
+              href="https://github.com/HarryMellsop"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              class="p-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a
+              href="https://x.com/harrymellsop"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X"
+              class="p-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
         </div>
+      </header>
+
+      <!-- Bio -->
+      <section class="mb-10 space-y-4">
+        <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+          Co-founder at <a href="https://www.antioch.com" target="_blank" rel="noopener noreferrer" class="text-neutral-800 dark:text-neutral-100 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Antioch</a>, where we enable leading autonomy companies to shift their development cycles from hardware-in-the-loop to pure software.
+        </p>
+        <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+          Previously studied AI and economics at <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" class="text-neutral-800 dark:text-neutral-100 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Stanford University</a>, helped solve safe autonomous driving at <a href="https://www.tesla.com/autopilot" target="_blank" rel="noopener noreferrer" class="text-neutral-800 dark:text-neutral-100 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Tesla Autopilot</a>, and then built Transpose, which we sold to <a href="https://www.chainalysis.com" target="_blank" rel="noopener noreferrer" class="text-neutral-800 dark:text-neutral-100 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Chainalysis</a> in 2023.
+        </p>
+      </section>
+
+      <!-- Experience Timeline -->
+      <section>
+        <h2 class="text-sm font-medium uppercase tracking-wide text-neutral-400 dark:text-neutral-500 mb-6">Experience</h2>
         
-    </body>
+        <div class="relative">
+          <!-- Timeline line -->
+          <div class="absolute left-5 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
+          <!-- Antioch -->
+          <div class="relative flex gap-4 pb-8">
+            <a href="https://www.antioch.com" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/antioch.png" alt="Antioch" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.antioch.com" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Antioch
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2025 –</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">Co-Founder</p>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">Antioch provides cloud-based simulation and development tools that enable autonomy companies to reduce their reliance on hardware-in-the-loop testing, and shift their engineering processes to pure software. Backed by <a href="https://www.a-star.co/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">A*</a>, <a href="https://macventurecapital.com/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">MaC Venture Capital</a>, <a href="https://www.abstract.com/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Abstract</a>, <a href="https://www.boxgroup.com/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Boxgroup</a>, <a href="https://www.icehouseventures.co.nz/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Icehouse Ventures</a>, <a href="https://www.shyamsankar.com/" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Shyam Sankar</a>, <a href="https://foxglove.dev/about" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Adrian Macneil</a>, and others.</p>
+              
+              <!-- In the Media -->
+              <div class="mt-3">
+                <p class="text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-1.5">In the Media</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <a href="https://www.rnz.co.nz/national/programmes/ninetonoon/audio/2019016142/kiwi-entrepreneur-tackling-ai-robotics-programming" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">RNZ</a>
+                  <a href="https://www.iheart.com/podcast/1049-the-sunday-session-with-f-28944197/episode/harry-mellsop-kiwi-entrepreneur-on-his-312527152/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Newstalk ZB</a>
+                  <a href="https://www.nzherald.co.nz/business/kiwi-harry-mellsop-raises-73m-for-his-physical-world-ai-start-up-antioch/premium/RK6UAMJWSBGGBLHBB4JFFZX5HM/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">NZ Herald</a>
+                  <a href="https://siliconangle.com/2025/12/08/anticoh-lands-4-25m-pre-seed-funding-accelerate-autonomous-robot-testing-digital-twins/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Silicon Angle</a>
+                  <a href="https://www.therobotreport.com/antioch-raises-pre-seed-funding-accelerate-ai-robotics-testing/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">The Robot Report</a>
+                  <a href="https://roboticsandautomationnews.com/2025/12/04/us-startup-antioch-raises-4-25-million-to-build-simulation-infrastructure-to-the-robotics-industry/97336/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Robotics & Automation News</a>
+                  <a href="https://www.citybiz.co/article/780691/robotics-development-start-up-antioch-raises-4-25m/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Citybiz</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transpose -->
+          <div class="relative flex gap-4 pb-8">
+            <a href="https://www.chainalysis.com/product/ds/" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/transpose.png" alt="Transpose" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.chainalysis.com/product/ds/" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Transpose
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2022 – 2025</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">CTO</p>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">Transpose is the leading blockchain data platform, powering real-time indexing and threat intelligence for any blockchain data. We serve the world's leading national security, law enforcement, tax, and regulatory agencies, as well as major private sector institutions in finance, software, security, and more. Transpose was rebranded to 'Chainalysis Data Solutions' after our acquisition.</p>
+              
+              <!-- Acquisition Callout -->
+              <a href="https://www.chainalysis.com/blog/chainalysis-transpose-announcement/" target="_blank" rel="noopener noreferrer" class="mt-3 flex items-center gap-2 px-3 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800 rounded-lg transition-colors">
+                <span class="text-sm text-blue-700 dark:text-blue-300 font-medium flex-1">Acquired by Chainalysis in 2023</span>
+                <svg class="w-4 h-4 text-blue-400 dark:text-blue-500 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+                </svg>
+              </a>
+
+              <!-- Acquisition Coverage -->
+              <div class="mt-3">
+                <p class="text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-1.5">Acquisition Coverage</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <a href="https://www.chainalysis.com/blog/chainalysis-transpose-announcement/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Chainalysis</a>
+                  <a href="https://www.theblock.co/post/232535/chainalysis-acquires-real-time-crypto-data-company-transpose" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">The Block</a>
+                  <a href="https://finance.yahoo.com/news/chainalysis-aims-sharpen-data-insights-235758702.html" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Yahoo Finance</a>
+                  <a href="https://www.benzinga.com/markets/cryptocurrency/23/05/32630622/chainalysis-acquires-blockchain-data-company-transpose-aims-to-simplify-web3-applications-" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Benzinga</a>
+                  <a href="https://www.crowdfundinsider.com/2023/06/208156-chainalysis-acquires-transpose-a-blockchain-data-and-infrastructure-firm/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Crowdfund Insider</a>
+                  <a href="https://cryptorank.io/news/tag/transpose-acquisition" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">CryptoRank</a>
+                  <a href="https://medium.com/@aspendigitalAMP/chainalysis-aims-to-sharpen-data-insights-with-transpose-acquisition-aspen-market-daily-17692316d00e" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Medium</a>
+                  <a href="https://www.binance.com/en/square/post/577585" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Binance</a>
+                </div>
+              </div>
+
+              <!-- In the Media -->
+              <div class="mt-3">
+                <p class="text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-1.5">In the Media</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <a href="https://www.chainalysis.com/blog/ep-63-real-time-crypto-data-for-developers/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Chainalysis Podcast</a>
+                  <a href="https://afp.gov.au/news-centre/media-release/australia-joins-global-campaign-disrupt-and-prevent-cryptocurrency-scams" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">AFP</a>
+                  <a href="https://www.afr.com/politics/federal/afp-discovers-2000-compromised-australian-cryptocurrency-wallets-20240801-p5jyjo" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">AFR</a>
+                  <a href="https://www.dlnews.com/articles/people-culture/chainalysis-partners-with-law-enforcement-to-fight-scams/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">DL News</a>
+                  <a href="https://www.bankinfosecurity.com/operation-spincaster-targets-crypto-pig-butchering-scams-a-25800" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Bank Info Security</a>
+                  <a href="https://www.deltapolice.ca/media/police-partner-chainalysis-tackle-cryptocurrency-scams-0" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Delta Police</a>
+                  <a href="https://www.police1.com/investigations/crypto-investment-scams-are-on-the-rise" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Police1</a>
+                  <a href="https://cyberpress.org/new-phishing-technique-draining-victims-wallets/" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Cyberpress</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tesla -->
+          <div class="relative flex gap-4 pb-8">
+            <a href="https://www.tesla.com" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/tesla.png" alt="Tesla" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.tesla.com" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Tesla
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2022</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">Vision Engineer, Autopilot</p>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">At Tesla, I worked on computer vision and neural network systems for Tesla's autonomous driving stack, including leading the driver monitoring program.</p>
+            </div>
+          </div>
+
+          <!-- Crimson Education -->
+          <div class="relative flex gap-4">
+            <a href="https://www.crimsoneducation.org" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/crimson.jpeg" alt="Crimson Education" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.crimsoneducation.org" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Crimson Education
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2021 – 2022</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">VP Product</p>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">At Crimson, I led the product and engineering strategy across the company, including managing the acquisition and integration of <a href="https://www.revisionvillage.com" target="_blank" rel="noopener noreferrer" class="text-neutral-700 dark:text-neutral-200 font-medium underline decoration-neutral-300 dark:decoration-neutral-600 hover:decoration-neutral-500 dark:hover:decoration-neutral-400 transition-colors">Revision Village</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <h2 class="text-sm font-medium uppercase tracking-wide text-neutral-400 dark:text-neutral-500 mt-10 mb-6">Education</h2>
+        
+        <div class="relative">
+          <div class="absolute left-5 top-0 bottom-0 w-px bg-neutral-200 dark:bg-neutral-700"></div>
+          
+          <!-- Stanford M.S. -->
+          <div class="relative flex gap-4 pb-8">
+            <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/stanford.avif" alt="Stanford" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Stanford University
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2020 – 2022</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">M.S. Artificial Intelligence</p>
+              
+              <div class="mt-3">
+                <p class="text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-1.5">Siebel Scholar</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <a href="https://www.businesswire.com/news/home/20210923005006/en/Siebel-Scholars-Foundation-Announces-Class-of-2022" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Businesswire</a>
+                  <a href="https://news.stanford.edu/stories/2021/09/15-stanford-graduate-students-named-siebel-scholars" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Stanford News</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stanford B.S. -->
+          <div class="relative flex gap-4">
+            <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" class="logo-link relative z-10 flex-shrink-0 w-10 h-10 rounded-lg bg-white border border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600 flex items-center justify-center overflow-hidden transition-colors">
+              <img src="/assets/logos/stanford.avif" alt="Stanford" class="w-6 h-6 object-contain" />
+            </a>
+            <div class="flex-1 pt-0.5">
+              <div class="flex items-baseline justify-between gap-2">
+                <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" class="font-medium text-neutral-900 dark:text-white hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors flex items-center gap-1">
+                  Stanford University
+                  <svg class="w-3 h-3 link-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
+                <span class="text-xs text-neutral-400 dark:text-neutral-500">2017 – 2021</span>
+              </div>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400">B.S. Computer Science, Economics (with Distinction)</p>
+              
+              <div class="mt-3">
+                <p class="text-xs font-medium text-neutral-400 dark:text-neutral-500 mb-1.5">Honors</p>
+                <div class="flex flex-wrap gap-1.5">
+                  <a href="https://engineering.stanford.edu/students-academics/academics/frederick-emmons-terman-engineering-scholastic-award/terman-awards-2" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Frederick Emmons Terman Engineering Scholastic Award</a>
+                  <a href="https://undergrad.stanford.edu/awards-and-graduation-honors/past-graduation-honors/undergraduate-honors-society-recipients-2020" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Phi Beta Kappa</a>
+                  <a href="https://undergrad.stanford.edu/awards-and-graduation-honors/past-graduation-honors/undergraduate-honors-society-recipients-2020" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Tau Beta Pi</a>
+                  <a href="https://introsems.stanford.edu/teach/introsem-excellence-award" target="_blank" rel="noopener noreferrer" class="text-xs px-2 py-0.5 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded text-neutral-600 dark:text-neutral-400 transition-colors">Russell A. Berman Award</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      toggle.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.theme = isDark ? 'dark' : 'light';
+      });
+    </script>
+  </body>
 </html>
+
