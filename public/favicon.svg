@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Kiwi fruit cross-section -->
+  <!-- Brown outer ring (skin) -->
+  <ellipse cx="50" cy="50" rx="45" ry="45" fill="#8B6914"/>
+  <!-- Green flesh -->
+  <ellipse cx="50" cy="50" rx="40" ry="40" fill="#8BC34A"/>
+  <!-- Lighter green inner ring -->
+  <ellipse cx="50" cy="50" rx="28" ry="28" fill="#AED581"/>
+  <!-- White center -->
+  <ellipse cx="50" cy="50" rx="8" ry="12" fill="#F5F5DC"/>
+  <!-- Seeds radiating from center -->
+  <g fill="#1a1a1a">
+    <!-- Top seeds -->
+    <ellipse cx="50" cy="25" rx="2" ry="4"/>
+    <ellipse cx="42" cy="27" rx="2" ry="4" transform="rotate(-20 42 27)"/>
+    <ellipse cx="58" cy="27" rx="2" ry="4" transform="rotate(20 58 27)"/>
+    <!-- Upper left seeds -->
+    <ellipse cx="30" cy="35" rx="2" ry="4" transform="rotate(-50 30 35)"/>
+    <ellipse cx="25" cy="45" rx="2" ry="4" transform="rotate(-70 25 45)"/>
+    <!-- Upper right seeds -->
+    <ellipse cx="70" cy="35" rx="2" ry="4" transform="rotate(50 70 35)"/>
+    <ellipse cx="75" cy="45" rx="2" ry="4" transform="rotate(70 75 45)"/>
+    <!-- Bottom seeds -->
+    <ellipse cx="50" cy="75" rx="2" ry="4"/>
+    <ellipse cx="42" cy="73" rx="2" ry="4" transform="rotate(20 42 73)"/>
+    <ellipse cx="58" cy="73" rx="2" ry="4" transform="rotate(-20 58 73)"/>
+    <!-- Lower left seeds -->
+    <ellipse cx="30" cy="65" rx="2" ry="4" transform="rotate(50 30 65)"/>
+    <ellipse cx="25" cy="55" rx="2" ry="4" transform="rotate(70 25 55)"/>
+    <!-- Lower right seeds -->
+    <ellipse cx="70" cy="65" rx="2" ry="4" transform="rotate(-50 70 65)"/>
+    <ellipse cx="75" cy="55" rx="2" ry="4" transform="rotate(-70 75 55)"/>
+  </g>
+</svg>
+
